@@ -195,10 +195,11 @@ const viewAdmin = {
       this.inputLinkVal = document.getElementById('inputLink').value;
       this.inputClickVal = document.getElementById('inputClick').value;
 
-      const checkClickCount = function(input) {
-          console.log(this);
+      const checkClickCount = function(alertOrNot) {
         if(isNaN(this.inputClickVal)) {
-          alert(`${input} input is invalid, current ${input} will be used instead!`);
+          if (alertOrNot) {
+            alert(`Click count input is invalid, current count will be used instead!`);
+          }
           return model.currentCat.clickCount;
         } else {
           return this.inputClickVal;
@@ -208,10 +209,10 @@ const viewAdmin = {
       return updateCat = {
         nickName: model.currentCat.nickName,
         name: this.inputNameVal || model.currentCat.name,
-        // TODO: add a function to validate link
+        // TODO: add a function to validate src link
         src: this.inputLinkVal || model.currentCat.src,
-        meow: "meowwww ".repeat(checkClickCount('purring')),
-        clickCount: checkClickCount('click count'),
+        meow: "meowwww ".repeat(checkClickCount(false)),
+        clickCount: checkClickCount(true),
       };
 
     };
@@ -222,8 +223,6 @@ const viewAdmin = {
         octopus.hideAdmin();
         viewEach.render();
       };
-
-      // TODO: make alert apear: 'Cat information has been updated'
     })(getInputVal));
 
     this.render();
