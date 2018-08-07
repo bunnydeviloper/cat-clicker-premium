@@ -178,9 +178,19 @@ const viewAdmin = {
     this.save = document.getElementById('save');
     this.adminButton = document.getElementById('adminButton');
 
-    adminButton.addEventListener('click', function() {
-      console.log(model.adminStatus);
+    this.adminButton.addEventListener('click', function() {
       model.adminStatus ? octopus.hideAdmin() : octopus.showAdmin();
+    });
+
+    this.cancel.addEventListener('click', function() {
+      octopus.hideAdmin();
+    });
+
+    this.save.addEventListener('click', function() {
+      // octopus.updateCurrentCat(
+      // save
+      // TODO: make alert apear: 'Cat information has been updated'
+      octopus.hideAdmin();
     });
 
     this.render();
@@ -189,8 +199,6 @@ const viewAdmin = {
     model.adminStatus
       ? this.adminElem.style.display = "block"
       : this.adminElem.style.display = "none";
-      // render the admin portion
-    
   }
 };
 
