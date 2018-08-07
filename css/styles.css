@@ -1,0 +1,63 @@
+body {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+h1, h3 {
+  text-align: center;
+  color: blue;
+}
+
+div#purr {
+  max-width: 65%;
+  margin: auto;
+}
+
+div#catList {
+  padding-top: 50px;
+}
+
+div#catList img {
+  height: 50px;
+  width: 50px;
+  display: block;
+  margin: 5px;
+}
+
+div#cat, div#catList {
+  display: inline-block;
+  vertical-align: top;
+  margin: auto;
+  text-align: center;
+}
+
+div#cat {
+  width: 80%;
+}
+
+div#cat img {
+  height: 300px;
+  margin: 5px;
+}
+
+@media screen and (max-width: 550px) {
+  body, div#cat {
+    width: 100%;
+  }
+  h1 {
+    font-size: 1.2em;
+  }
+  div#purr {
+    max-width: 100%;
+  }
+  div#cat img{
+    max-width: 100%;
+  }
+  div#catList {
+    padding-top: 10px;
+  }
+  div#catList img{
+    display: inline-block;
+  }
+}
