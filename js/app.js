@@ -81,6 +81,10 @@ const octopus = {
     model.currentCat = cat;
   },
 
+  updateCurrentCat: function(cat) {
+    model.currentCat = cat;
+  },
+
   incrementCounter: function() {
     // increments the counter for the currently-selected cat
     model.currentCat.clickCount++;
@@ -186,12 +190,41 @@ const viewAdmin = {
       octopus.hideAdmin();
     });
 
-    this.save.addEventListener('click', function() {
-      // octopus.updateCurrentCat(
-      // save
+    const getInputVal = function() {
+      this.inputNameVal = document.getElementById('inputName').value;
+      this.inputLinkVal = document.getElementById('inputLink').value;
+      this.inputClickVal = document.getElementById('inputClick').value;
+
+      const checkClickCount = function(input) {
+          console.log(this);
+        if(isNaN(this.inputClickVal)) {
+          alert(`${input} input is invalid, current ${input} will be used instead!`);
+          return model.currentCat.clickCount;
+        } else {
+          return this.inputClickVal;
+        }
+      }
+
+      return updateCat = {
+        nickName: model.currentCat.nickName,
+        name: this.inputNameVal || model.currentCat.name,
+        // TODO: add a function to validate link
+        src: this.inputLinkVal || model.currentCat.src,
+        meow: "meowwww ".repeat(checkClickCount('purring')),
+        clickCount: checkClickCount('click count'),
+      };
+
+    };
+
+    this.save.addEventListener('click', (function(getInputValCopy) {
+      return function() {
+        octopus.updateCurrentCat(getInputValCopy());
+        octopus.hideAdmin();
+        viewEach.render();
+      };
+
       // TODO: make alert apear: 'Cat information has been updated'
-      octopus.hideAdmin();
-    });
+    })(getInputVal));
 
     this.render();
   },
