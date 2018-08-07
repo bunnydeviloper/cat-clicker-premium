@@ -2,6 +2,7 @@
 
 const model = {
   currentCat: null,
+  adminStatus: false,
   cats: [
     {
       nickName: "catqueen",
@@ -65,6 +66,7 @@ const octopus = {
     // tell our views to initialize
     viewAll.init();
     viewEach.init();
+    viewAdmin.init();
   },
 
   getCurrentCat: function() {
@@ -84,6 +86,15 @@ const octopus = {
     model.currentCat.clickCount++;
     model.currentCat.meow += 'meowww ';
     viewEach.render();
+  },
+
+  showAdmin: function() {
+    model.adminStatus = true;
+    viewAdmin.render();
+  },
+  hideAdmin: function() {
+    model.adminStatus = false;
+    viewAdmin.render();
   }
 };
 
@@ -156,6 +167,30 @@ const viewAll = {
       // finally, add the element to the list
       this.catList.appendChild(elem);
     }
+  }
+};
+
+/* ========== viewAdmin ==========*/
+const viewAdmin = {
+  init: function() {
+    this.adminElem = document.getElementById('adminView');
+    this.cancel = document.getElementById('cancel');
+    this.save = document.getElementById('save');
+    this.adminButton = document.getElementById('adminButton');
+
+    adminButton.addEventListener('click', function() {
+      console.log(model.adminStatus);
+      model.adminStatus ? octopus.hideAdmin() : octopus.showAdmin();
+    });
+
+    this.render();
+  },
+  render: function() {
+    model.adminStatus
+      ? this.adminElem.style.display = "block"
+      : this.adminElem.style.display = "none";
+      // render the admin portion
+    
   }
 };
 
