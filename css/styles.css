@@ -41,6 +41,21 @@ div#cat img {
   margin: 5px;
 }
 
+button#adminButton {
+  /* make button appear on the right... */
+  color: blue;
+  background-color: white;
+  border: 2px solid blue;
+}
+
+div#adminView {
+  display: none
+}
+
+div#adminView form input {
+  width: 100%;
+}
+
 @media screen and (max-width: 550px) {
   body, div#cat {
     width: 100%;
