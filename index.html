@@ -20,7 +20,9 @@
       </div>
       <div id="catList"></div>
     </section>
-    <button id="adminButton">Admin</button>
+    <!-- note for button: must set the type="button",
+      otherwise browser will set to 'reset' or 'submit', which cause the page to reload -->
+    <button type="button" id="adminButton">Admin</button>
     <div id="adminView">
       <form>
         <label for="inputName">Name: </label>
@@ -29,8 +31,8 @@
         <input type="text" id="inputLink" placeholder="https://...">
         <label for="inputClick">Clicks: </label>
         <input type="text" id="inputClick" placeholder="12">
-        <button id="cancel">Cancel</button>
-        <button id="save">Save</button>
+        <button type="button" id="cancel">Cancel</button>
+        <button type="button" id="save">Save</button>
       </form>
     </div>
   </body>
