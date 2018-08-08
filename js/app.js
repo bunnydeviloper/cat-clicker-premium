@@ -190,11 +190,13 @@ const viewAdmin = {
       octopus.hideAdmin();
     });
 
+    // add function to get all input values from user
     const getInputVal = function() {
       this.inputNameVal = document.getElementById('inputName').value;
       this.inputLinkVal = document.getElementById('inputLink').value;
       this.inputClickVal = document.getElementById('inputClick').value;
 
+      // add function to check click count input (must be a number)
       const checkClickCount = function(alertOrNot) {
         if(isNaN(this.inputClickVal)) {
           if (alertOrNot) {
@@ -211,7 +213,7 @@ const viewAdmin = {
         name: this.inputNameVal || model.currentCat.name,
         // TODO: add a function to validate src link
         src: this.inputLinkVal || model.currentCat.src,
-        meow: "meowwww ".repeat(checkClickCount(false)),
+        meow: "meowww ".repeat(checkClickCount(false)),
         clickCount: checkClickCount(true),
       };
 
@@ -219,8 +221,10 @@ const viewAdmin = {
 
     this.save.addEventListener('click', (function(getInputValCopy) {
       return function() {
-        octopus.updateCurrentCat(getInputValCopy());
+        octopus.setCurrentCat(getInputValCopy());
         octopus.hideAdmin();
+        // TOFIX: for some reason, when click on another cat and come back to the newly-changed cat
+        // all newly-input-values are gone, and it display the original information
         viewEach.render();
       };
     })(getInputVal));
